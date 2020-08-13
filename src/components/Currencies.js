@@ -1,4 +1,5 @@
 import React from 'react'
+import './Currencies.css'
 
 const Currencies = ({ currencies, loading}) => {
   if(loading) {
@@ -9,7 +10,9 @@ const Currencies = ({ currencies, loading}) => {
         {currencies.map((currency) => (
           <li className="currency" key={currency.id}>
             <p>{currency.name}</p>
-            <img className="logo" alt={currency.name} src={currency.logo_url} />
+            <div className="image-container">
+              <img className="logo" alt={currency.name} src={currency.logo_url} />
+            </div>
           </li>
         ))}
       </ul>

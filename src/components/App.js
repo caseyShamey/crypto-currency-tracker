@@ -9,7 +9,8 @@ const App = () => {
   const [currencies, setCurrencies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [currenciesPerPage] = useState(500);
+  const [currenciesPerPage] = useState(12);
+  const [numberPaginated] = useState(5);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -38,6 +39,9 @@ const App = () => {
         currenciesPerPage={currenciesPerPage}
         totalCurrencies={currencies.length}
         paginate={paginate}
+        currentPage={currentPage}
+        numberPaginated={numberPaginated}
+        lastCurrency={currencies.length - 1}
         />
     </div>
   )
