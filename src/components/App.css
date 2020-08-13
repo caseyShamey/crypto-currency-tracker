@@ -1,4 +1,4 @@
-ul {
+.currencyList {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -7,7 +7,7 @@ ul {
   list-style-type: none;
 }
 
-li {
+.currency {
   width: 20%;
   height: 20%;
   padding: 1%;
