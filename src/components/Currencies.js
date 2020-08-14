@@ -1,14 +1,14 @@
 import React from 'react'
 import './Currencies.css'
 
-const Currencies = ({ currencies, loading}) => {
+const Currencies = ({ currencies, loading, selectCurrency }) => {
   if(loading) {
     return <h2>Loading...</h2>
   }
   return (
     <ul className="currencyList">
-        {currencies.map((currency) => (
-          <li className="currency" key={currency.id}>
+        {currencies.map((currency, i) => (
+          <li onClick={() => selectCurrency(i)} className="currency" key={currency.id}>
             <p>{currency.name}</p>
             <div className="image-container">
               <img className="logo" alt={currency.name} src={currency.logo_url} />

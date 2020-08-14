@@ -15,6 +15,12 @@
   background-color: white;
   border-radius: 25px;
   box-shadow: 3px 3px 5px black;
+  cursor: pointer;
+}
+
+.currency:hover {
+  background-color: darkgray;
+  color: white;
 }
 
 .image-container {

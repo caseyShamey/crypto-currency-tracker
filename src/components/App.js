@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Currencies from './Currencies';
-import Pagination from './Pagination';
+import CurrenciesView from './CurrenciesView';
+import CurrencyDetail from './CurrencyDetail';
 import './App.css';
 
 const App = () => {
+  const [view, setView] = useState('currencies');
+  const [selectedCurrency, setSelectedCurrency] = useState(null);
   const [currencies, setCurrencies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currenciesPerPage] = useState(12);
-  const [numberPaginated] = useState(5);
-  const [lastInPaginatedRange, setLastInPaginatedRange] = useState(5);
-  const [firstInPaginatedRange, setFirstInPaginatedRange] = useState(1);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -25,34 +22,28 @@ const App = () => {
     fetchCurrencies();
   }, []);
 
-  // Get current currencies
-  const indexOfLastCurrency = currentPage * currenciesPerPage;
-  const indexOfFirstCurrency = indexOfLastCurrency - currenciesPerPage;
-  const currentCurrencies = currencies.slice(indexOfFirstCurrency, indexOfLastCurrency);
+  // Change view
+  const detail = () => setView('detail')
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  //Detail Currency
+  const selectCurrency = (id) => {
+    detail()
+    setSelectedCurrency(currencies[id])
+  }
 
-  // Set first and last in range
-  const paginateLastRange = (lastNum) => setLastInPaginatedRange(lastNum)
-  const paginateFirstRange = (firstNum) => setFirstInPaginatedRange(firstNum)
-
-  return (
-    <div className='container mt-5'>
-      <h1 className='text-primary mb-3'>Cryptocurrencies Tracker</h1>
-        <Currencies currencies={currentCurrencies} loading={loading}/>
-        <Pagination
-        paginate={paginate}
-        currentPage={currentPage}
-        numberPaginated={numberPaginated}
-        lastInPaginatedRange={lastInPaginatedRange}
-        paginateLastRange={paginateLastRange}
-        paginateFirstRange={paginateFirstRange}
-        firstInPaginatedRange={firstInPaginatedRange}
-        />
-    </div>
-  )
+  if (view === 'currencies') {
+    return (
+      <div>
+        <CurrenciesView selectCurrency={selectCurrency} selectedCurrency={selectedCurrency} currencies={currencies} loading={loading} />
+      </div>
+    )
+  } else if (view === "detail") {
+    return (
+      <div>
+        <CurrencyDetail currency={selectedCurrency} />
+      </div>
+    )
+  }
 }
-
 
 export default App;
