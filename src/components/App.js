@@ -30,8 +30,10 @@ const App = () => {
   const indexOfFirstCurrency = indexOfLastCurrency - currenciesPerPage;
   const currentCurrencies = currencies.slice(indexOfFirstCurrency, indexOfLastCurrency);
 
-  //Change page
+  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Set first and last in range
   const paginateLastRange = (lastNum) => setLastInPaginatedRange(lastNum)
   const paginateFirstRange = (firstNum) => setFirstInPaginatedRange(firstNum)
 
@@ -40,12 +42,9 @@ const App = () => {
       <h1 className='text-primary mb-3'>Cryptocurrencies Tracker</h1>
         <Currencies currencies={currentCurrencies} loading={loading}/>
         <Pagination
-        currenciesPerPage={currenciesPerPage}
-        totalCurrencies={currencies.length}
         paginate={paginate}
         currentPage={currentPage}
         numberPaginated={numberPaginated}
-        lastCurrency={currencies.length - 1}
         lastInPaginatedRange={lastInPaginatedRange}
         paginateLastRange={paginateLastRange}
         paginateFirstRange={paginateFirstRange}
