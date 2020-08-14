@@ -11,6 +11,8 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currenciesPerPage] = useState(12);
   const [numberPaginated] = useState(5);
+  const [lastInPaginatedRange, setLastInPaginatedRange] = useState(5);
+  const [firstInPaginatedRange, setFirstInPaginatedRange] = useState(1);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -30,6 +32,8 @@ const App = () => {
 
   //Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginateLastRange = (lastNum) => setLastInPaginatedRange(lastNum)
+  const paginateFirstRange = (firstNum) => setFirstInPaginatedRange(firstNum)
 
   return (
     <div className='container mt-5'>
@@ -42,6 +46,10 @@ const App = () => {
         currentPage={currentPage}
         numberPaginated={numberPaginated}
         lastCurrency={currencies.length - 1}
+        lastInPaginatedRange={lastInPaginatedRange}
+        paginateLastRange={paginateLastRange}
+        paginateFirstRange={paginateFirstRange}
+        firstInPaginatedRange={firstInPaginatedRange}
         />
     </div>
   )
