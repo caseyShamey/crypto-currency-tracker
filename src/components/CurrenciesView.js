@@ -31,6 +31,7 @@ const CurrenciesView = ({ selectCurrency, selectedCurrency, currencies, loading 
           currencies={currentCurrencies}
           loading={loading}
           selectCurrency={selectCurrency}
+          indexOfFirstCurrency={indexOfFirstCurrency}
         />
         <Pagination
         className="pagination"
