@@ -6,16 +6,16 @@ import Pagination from './Pagination';
 import './CurrenciesView.css';
 
 const CurrenciesView = ({ selectCurrency, selectedCurrency, currencies, loading }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [currenciesPerPage] = useState(12);
   const [numberPaginated] = useState(5);
   const [lastInPaginatedRange, setLastInPaginatedRange] = useState(5);
   const [firstInPaginatedRange, setFirstInPaginatedRange] = useState(1);
 
   // Get current currencies
-  const indexOfLastCurrency = currentPage * currenciesPerPage;
-  const indexOfFirstCurrency = indexOfLastCurrency - currenciesPerPage;
-  const currentCurrencies = currencies.slice(indexOfFirstCurrency, indexOfLastCurrency);
+  const indexOfLastCurrency = currentPage + currenciesPerPage - 1;
+  const indexOfFirstCurrency = indexOfLastCurrency - currenciesPerPage + 1;
+  const currentCurrencies = currencies.slice(indexOfFirstCurrency, indexOfLastCurrency + 1);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -36,12 +36,14 @@ const CurrenciesView = ({ selectCurrency, selectedCurrency, currencies, loading 
         <Pagination
         className="pagination"
         paginate={paginate}
+        indexOfLastCurrency={indexOfLastCurrency}
         currentPage={currentPage}
         numberPaginated={numberPaginated}
         lastInPaginatedRange={lastInPaginatedRange}
         paginateLastRange={paginateLastRange}
         paginateFirstRange={paginateFirstRange}
         firstInPaginatedRange={firstInPaginatedRange}
+        currenciesPerPage={currenciesPerPage}
         />
     </div>
   )

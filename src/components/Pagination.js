@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pagination = ({ paginate, currentPage, numberPaginated, lastInPaginatedRange, paginateLastRange, paginateFirstRange, firstInPaginatedRange }) => {
+const Pagination = ({ paginate, currentPage, numberPaginated, lastInPaginatedRange, paginateLastRange, paginateFirstRange, firstInPaginatedRange, indexOfLastCurrency, currenciesPerPage }) => {
 
   const pageRange = [];
 
@@ -15,10 +15,10 @@ const Pagination = ({ paginate, currentPage, numberPaginated, lastInPaginatedRan
   }
 
   const previousPaginate = () => {
-    if (currentPage <= numberPaginated) {
+    if (currentPage <= currenciesPerPage) {
       paginateFirstRange(1)
       paginateLastRange(numberPaginated)
-      paginate(1)
+      paginate(0)
     } else {
       paginateFirstRange(pageRange[0] - numberPaginated)
       paginateLastRange(pageRange[0] - 1)
@@ -29,7 +29,7 @@ const Pagination = ({ paginate, currentPage, numberPaginated, lastInPaginatedRan
   const nextPaginate = () => {
     paginateLastRange(pageRange[pageRange.length - 1] + numberPaginated)
     paginateFirstRange(pageRange[pageRange.length - 1] + 1)
-    paginate(lastInPaginatedRange + 1)
+    paginate(indexOfLastCurrency + 1)
   }
 
   return (
