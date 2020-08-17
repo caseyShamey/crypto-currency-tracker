@@ -4,7 +4,7 @@ import TimeAgo from 'timeago-react';
 
 import "./CurrencyDetail.css";
 
-const CurrencyDetail = ({ currency }) => {
+const CurrencyDetail = ({ currency, viewCurrencies }) => {
   let { name, symbol, rank, price, price_timestamp, high, high_timestamp, circulating_supply, max_supply, market_cap, logo_url } = currency
 
   const numWithCommas = (num) => {
@@ -20,6 +20,13 @@ const CurrencyDetail = ({ currency }) => {
 
   return (
     <div className="currency-detail-container">
+      <button
+        type="button"
+        className="btn btn-primary back"
+        onClick={() => viewCurrencies()}
+      >
+        <i className="fa fa-arrow-left" aria-hidden="true"></i>
+      </button>
       <div className="detail-image-container">
         <img className="detail-logo" alt={name} src={logo_url} />
       </div>

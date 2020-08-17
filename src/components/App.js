@@ -24,6 +24,7 @@ const App = () => {
 
   // Change view
   const detail = () => setView('detail')
+  const viewCurrencies = () => setView('currencies')
 
   //Detail Currency
   const selectCurrency = (id) => {
@@ -40,7 +41,7 @@ const App = () => {
   } else if (view === "detail") {
     return (
       <div>
-        <CurrencyDetail currency={selectedCurrency} />
+        <CurrencyDetail currency={selectedCurrency} viewCurrencies={viewCurrencies} />
       </div>
     )
   }
