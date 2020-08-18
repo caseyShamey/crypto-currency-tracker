@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 import axios from 'axios'
 
+import './Charts.css'
+
 const Charts = ({ loading, setLoading, id }) => {
   const [data, setData] = useState([{timestamps: null, prices: null}])
 
@@ -44,7 +46,7 @@ const Charts = ({ loading, setLoading, id }) => {
     return <h2>Charting data...</h2>
   }
   return (
-    <div>
+    <div className="chart">
       <Line
         data={chartData}
         options={{

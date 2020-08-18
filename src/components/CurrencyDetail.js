@@ -52,6 +52,26 @@ const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
         <h3>Market Cap: {numWithCommas(market_cap)}</h3>
       </div>
       <Charts loading={loading} setLoading={setLoading} id={id} />
+      <div className="chart-buttons-container">
+        <button
+        type="button"
+        className="btn btn-primary chart-button"
+        >
+          Values
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary chart-button"
+        >
+          Market Caps
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary chart-button"
+        >
+          Global Volumes
+        </button>
+      </div>
     </div>
   )
 }
