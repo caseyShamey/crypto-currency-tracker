@@ -41,7 +41,7 @@ const App = () => {
   } else if (view === "detail") {
     return (
       <div>
-        <CurrencyDetail currency={selectedCurrency} viewCurrencies={viewCurrencies} />
+        <CurrencyDetail currency={selectedCurrency} viewCurrencies={viewCurrencies} loading={loading} setLoading={setLoading} />
       </div>
     )
   }

@@ -1,11 +1,11 @@
 import React from 'react';
 import TimeAgo from 'timeago-react';
-
+import Charts from './Charts';
 
 import "./CurrencyDetail.css";
 
-const CurrencyDetail = ({ currency, viewCurrencies }) => {
-  let { name, symbol, rank, price, price_timestamp, high, high_timestamp, circulating_supply, max_supply, market_cap, logo_url } = currency
+const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
+  let { id, name, symbol, rank, price, price_timestamp, high, high_timestamp, circulating_supply, max_supply, market_cap, logo_url } = currency
 
   const numWithCommas = (num) => {
     if (num === undefined) {
@@ -51,6 +51,7 @@ const CurrencyDetail = ({ currency, viewCurrencies }) => {
         <h3>Max Supply: {numWithCommas(max_supply)}</h3>
         <h3>Market Cap: {numWithCommas(market_cap)}</h3>
       </div>
+      <Charts loading={loading} setLoading={setLoading} id={id} />
     </div>
   )
 }
