@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TimeAgo from 'timeago-react';
 import Charts from './Charts';
 
 import "./CurrencyDetail.css";
 
 const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
+  const [time, setTime] = useState([1, "days"]);
+
   let { id, name, symbol, rank, price, price_timestamp, high, high_timestamp, circulating_supply, max_supply, market_cap, logo_url } = currency
 
   const numWithCommas = (num) => {
@@ -51,25 +53,49 @@ const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
         <h3>Max Supply: {numWithCommas(max_supply)}</h3>
         <h3>Market Cap: {numWithCommas(market_cap)}</h3>
       </div>
-      <Charts loading={loading} setLoading={setLoading} id={id} />
-      <div className="chart-buttons-container">
+      <Charts loading={loading} setLoading={setLoading} id={id} time={time} />
+      <div className="time-button-container">
         <button
-        type="button"
-        className="btn btn-primary chart-button"
+          type="button"
+          className="btn btn-primary time-button"
+          onClick={() => setTime([1, "days"])}
         >
-          Values
+          1 day
         </button>
         <button
           type="button"
-          className="btn btn-primary chart-button"
+          className="btn btn-primary time-button"
+          onClick={() => setTime([1, "weeks"])}
         >
-          Market Caps
+          1 week
         </button>
         <button
           type="button"
-          className="btn btn-primary chart-button"
+          className="btn btn-primary time-button"
+          onClick={() => setTime([1, "months"])}
         >
-          Global Volumes
+          1 month
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary time-button"
+          onClick={() => setTime([3, "months"])}
+        >
+          3 months
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary time-button"
+          onClick={() => setTime([1, "years"])}
+        >
+          1 year
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary time-button"
+          onClick={() => setTime([5, "years"])}
+        >
+          5 years
         </button>
       </div>
     </div>
