@@ -54,7 +54,9 @@ const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
         <h3>Max Supply: {numWithCommas(max_supply)}</h3>
         <h3>Market Cap: {numWithCommas(market_cap)}</h3>
       </div>
-      <Charts loading={loading} setLoading={setLoading} id={id} time={time} />
+      <div className="chart-container">
+        <Charts loading={loading} setLoading={setLoading} name={name} id={id} time={time} />
+      </div>
       <div className="time-button-container">
         <button
           type="button"

@@ -5,7 +5,7 @@ import moment from 'moment'
 
 import './Charts.css'
 
-const Charts = ({ loading, setLoading, id, time }) => {
+const Charts = ({ loading, setLoading, name, id, time }) => {
   const [data, setData] = useState([{timestamps: null, prices: null}])
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Charts = ({ loading, setLoading, id, time }) => {
         options={{
           title:{
             display:true,
-            text:`${id}`,
+            text:`${name} Value Over Time`,
             fontSize:20
           },
           legend:{
