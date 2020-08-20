@@ -51,6 +51,8 @@ h3 {
 .chart-container {
   margin: 0 3% 0 3%;
   background-color: white;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 3px 3px 5px black;
 }
 
 .time-button-container {
@@ -66,6 +68,7 @@ h3 {
   background-color: white;
   color: black;
   border: none;
+  box-shadow: 3px 3px 5px black;
 }
 
 .time-button:hover {
