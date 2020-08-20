@@ -1,56 +1,65 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Pagination = ({ paginate, currentPage, numberPaginated, lastInPaginatedRange, paginateLastRange, paginateFirstRange, firstInPaginatedRange, indexOfLastCurrency, currenciesPerPage }) => {
+const Pagination = ({
+  setFirstCurrency,
+  numberPaginated,
+  setFirstInPaginatedRange,
+  firstInPaginatedRange,
+  currenciesPerPage,
+  numberOfCurrencies
+ }) => {
+
+  useEffect(() => {
+    setFirstCurrency(firstInPaginatedRange * currenciesPerPage - currenciesPerPage)
+  }, [currenciesPerPage, firstInPaginatedRange, setFirstCurrency])
 
   const pageRange = [];
 
-  if (currentPage <= numberPaginated) {
+  if (firstInPaginatedRange <= numberPaginated) {
     for (let i = 1; i <= numberPaginated; i++) {
       pageRange.push(i)
     }
   } else {
-    for (let j = firstInPaginatedRange; j <= lastInPaginatedRange; j++) {
+    for (let j = firstInPaginatedRange; j <= firstInPaginatedRange + numberPaginated - 1; j++) {
       pageRange.push(j)
     }
   }
 
+  const selectPage = (number) => {
+    setFirstCurrency(number * currenciesPerPage - currenciesPerPage)
+  }
+
   const previousPaginate = () => {
-    if (currentPage <= currenciesPerPage) {
-      paginateFirstRange(1)
-      paginateLastRange(numberPaginated)
-      paginate(0)
-    } else {
-      paginateFirstRange(pageRange[0] - numberPaginated)
-      paginateLastRange(pageRange[0] - 1)
-      paginate(pageRange[0] - numberPaginated)
+    if (firstInPaginatedRange > 1) {
+      setFirstInPaginatedRange(firstInPaginatedRange - numberPaginated)
     }
   }
 
   const nextPaginate = () => {
-    paginateLastRange(pageRange[pageRange.length - 1] + numberPaginated)
-    paginateFirstRange(pageRange[pageRange.length - 1] + 1)
-    paginate(indexOfLastCurrency + 1)
+    if (firstInPaginatedRange + numberPaginated < numberOfCurrencies / numberPaginated) {
+      setFirstInPaginatedRange(firstInPaginatedRange + numberPaginated)
+    }
   }
 
   return (
     <nav>
         <ul className="pagination justify-content-center pagination-lg">
           <li className="page-item">
-            <a onClick={previousPaginate} className="page-link" href="#">
+            <p onClick={previousPaginate} className="page-link">
               Previous
-            </a>
+            </p>
           </li>
           {pageRange.map(number => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} className="page-link" href="#">
+            <p onClick={() => selectPage(number)} className="page-link">
               {number}
-            </a>
+            </p>
           </li>
           ))}
           <li className="page-item">
-            <a onClick={nextPaginate} className="page-link" href="#">
+            <p onClick={nextPaginate} className="page-link">
               Next
-            </a>
+            </p>
           </li>
         </ul>
       </nav>

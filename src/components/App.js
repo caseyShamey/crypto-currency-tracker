@@ -10,12 +10,14 @@ const App = () => {
   const [selectedCurrency, setSelectedCurrency] = useState(null);
   const [currencies, setCurrencies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [numberOfCurrencies, setNumberOfCurrencies] = useState(0)
 
   useEffect(() => {
     const fetchCurrencies = async () => {
       setLoading(true);
       const res = await axios.get("https://api.nomics.com/v1/currencies/ticker?key=4582ca2d8e989291b7cb5c9236018ace")
       setCurrencies(res.data);
+      setNumberOfCurrencies(res.data.length)
       setLoading(false);
     }
 
@@ -35,7 +37,7 @@ const App = () => {
   if (view === 'currencies') {
     return (
       <div>
-        <CurrenciesView selectCurrency={selectCurrency} selectedCurrency={selectedCurrency} currencies={currencies} loading={loading} />
+        <CurrenciesView selectCurrency={selectCurrency} selectedCurrency={selectedCurrency} currencies={currencies} loading={loading} numberOfCurrencies={numberOfCurrencies} />
       </div>
     )
   } else if (view === "detail") {

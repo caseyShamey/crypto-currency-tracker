@@ -6,6 +6,7 @@ import "./CurrencyDetail.css";
 
 const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
   const [time, setTime] = useState([1, "days"]);
+  console.log(currency)
 
   let { id, name, symbol, rank, price, price_timestamp, high, high_timestamp, circulating_supply, max_supply, market_cap, logo_url } = currency
 
