@@ -11,22 +11,25 @@ const App = () => {
   const [currencies, setCurrencies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numberOfCurrencies, setNumberOfCurrencies] = useState(0)
+  const [firstInPaginatedRange, setFirstInPaginatedRange] = useState(1);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
       setLoading(true);
       const res = await axios.get("https://api.nomics.com/v1/currencies/ticker?key=4582ca2d8e989291b7cb5c9236018ace")
-      setCurrencies(res.data);
-      setNumberOfCurrencies(res.data.length)
-      setLoading(false);
+        setCurrencies(res.data);
+        setNumberOfCurrencies(res.data.length)
+        setLoading(false);
     }
 
     fetchCurrencies();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Change view
-  const detail = () => setView('detail')
-  const viewCurrencies = () => setView('currencies')
+  const detail = () => setView('detail');
+  const viewCurrencies = () => setView('currencies');
 
   //Detail Currency
   const selectCurrency = (id) => {
@@ -34,10 +37,35 @@ const App = () => {
     setSelectedCurrency(currencies[id])
   }
 
+  //Search
+  const search = (searchTerm) => {
+    let results = [];
+    for (let el of currencies) {
+      let lowCaseName = el.name.toLowerCase()
+      let lowCaseId = el.id.toLowerCase()
+      searchTerm = searchTerm.toLowerCase()
+      if (lowCaseName.includes(searchTerm.toLowerCase()) || lowCaseId.includes(searchTerm.toLowerCase())) {
+        results.push(el)
+      }
+    }
+    setCurrencies(results)
+    setNumberOfCurrencies(results.length)
+    setFirstInPaginatedRange(1)
+  }
+
   if (view === 'currencies') {
     return (
       <div>
-        <CurrenciesView selectCurrency={selectCurrency} selectedCurrency={selectedCurrency} currencies={currencies} loading={loading} numberOfCurrencies={numberOfCurrencies} />
+        <CurrenciesView
+          selectCurrency={selectCurrency}
+          selectedCurrency={selectedCurrency}
+          currencies={currencies}
+          loading={loading}
+          numberOfCurrencies={numberOfCurrencies}
+          search={search}
+          firstInPaginatedRange={firstInPaginatedRange}
+          setFirstInPaginatedRange={setFirstInPaginatedRange}
+        />
       </div>
     )
   } else if (view === "detail") {

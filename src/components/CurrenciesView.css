@@ -1,0 +1,8 @@
+.heading-container {
+  display: flex;
+  justify-content: space-around;
+}
+.crypto-title {
+  margin: 3% 3% 3% 3%;
+  cursor: pointer;
+}

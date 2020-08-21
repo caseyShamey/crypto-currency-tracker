@@ -1,7 +1,7 @@
 import React from 'react'
 import './Currencies.css'
 
-const Currencies = ({ currentCurrencies, loading, selectCurrency, firstCurrency }) => {
+const Currencies = ({ currentCurrencies, loading, selectCurrency, firstCurrency}) => {
   if(loading) {
     return <h2>Loading...</h2>
   }

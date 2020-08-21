@@ -15,7 +15,11 @@ const Pagination = ({
 
   const pageRange = [];
 
-  if (firstInPaginatedRange <= numberPaginated) {
+  if (firstInPaginatedRange + numberPaginated >= numberOfCurrencies / numberPaginated) {
+    for (let i = firstInPaginatedRange; i <= numberOfCurrencies / numberPaginated; i++) {
+      pageRange.push(i)
+    }
+  } else if (firstInPaginatedRange <= numberPaginated) {
     for (let i = 1; i <= numberPaginated; i++) {
       pageRange.push(i)
     }
@@ -36,7 +40,7 @@ const Pagination = ({
   }
 
   const nextPaginate = () => {
-    if (firstInPaginatedRange + numberPaginated < numberOfCurrencies / numberPaginated) {
+    if (numberOfCurrencies / currenciesPerPage > firstInPaginatedRange + numberPaginated) {
       setFirstInPaginatedRange(firstInPaginatedRange + numberPaginated)
     }
   }
