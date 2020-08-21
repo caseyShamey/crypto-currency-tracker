@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import './Search.css'
 
-const Search = ({ srch }) => {
+const Search = ({ search }) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleChange = (event) => {
@@ -11,7 +11,7 @@ const Search = ({ srch }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    srch(searchTerm)
+    search(searchTerm)
   }
 
   return (

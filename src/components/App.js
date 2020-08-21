@@ -12,6 +12,9 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [numberOfCurrencies, setNumberOfCurrencies] = useState(0)
   const [firstInPaginatedRange, setFirstInPaginatedRange] = useState(1);
+  const [firstCurrency, setFirstCurrency] = useState(0);
+  const [currenciesPerPage] = useState(12);
+  const [numberPaginated] = useState(5);
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -65,6 +68,10 @@ const App = () => {
           search={search}
           firstInPaginatedRange={firstInPaginatedRange}
           setFirstInPaginatedRange={setFirstInPaginatedRange}
+          firstCurrency={firstCurrency}
+          setFirstCurrency={setFirstCurrency}
+          currenciesPerPage={currenciesPerPage}
+          numberPaginated={numberPaginated}
         />
       </div>
     )
