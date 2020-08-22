@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TimeAgo from 'timeago-react';
 import Charts from './Charts';
+import TimeButton from './TimeButton'
 
 import "./CurrencyDetail.css";
 
@@ -10,6 +11,7 @@ const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
 
   let { id, name, symbol, rank, price, price_timestamp, high, high_timestamp, circulating_supply, max_supply, market_cap, logo_url } = currency
 
+  // Add commas to large numbers
   const numWithCommas = (num) => {
     if (num === undefined) {
       return 'NA'
@@ -58,48 +60,12 @@ const CurrencyDetail = ({ currency, viewCurrencies, loading, setLoading }) => {
         <Charts loading={loading} setLoading={setLoading} name={name} id={id} time={time} />
       </div>
       <div className="time-button-container">
-        <button
-          type="button"
-          className="btn btn-primary time-button"
-          onClick={() => setTime([1, "days"])}
-        >
-          1 day
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary time-button"
-          onClick={() => setTime([1, "weeks"])}
-        >
-          1 week
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary time-button"
-          onClick={() => setTime([1, "months"])}
-        >
-          1 month
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary time-button"
-          onClick={() => setTime([3, "months"])}
-        >
-          3 months
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary time-button"
-          onClick={() => setTime([1, "years"])}
-        >
-          1 year
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary time-button"
-          onClick={() => setTime([5, "years"])}
-        >
-          5 years
-        </button>
+        <TimeButton className="time-button" time={[1, "days"]} text={'1 day'} setTime={setTime} />
+        <TimeButton className="time-button" time={[1, "weeks"]} text={'1 week'} setTime={setTime} />
+        <TimeButton className="time-button" time={[1, "months"]} text={'1 month'} setTime={setTime} />
+        <TimeButton className="time-button" time={[3, "months"]} text={'3 months'} setTime={setTime} />
+        <TimeButton className="time-button" time={[1, "years"]} text={'1 year'} setTime={setTime} />
+        <TimeButton className="time-button" time={[5, "years"]} text={'5 years'} setTime={setTime} />
       </div>
     </div>
   )

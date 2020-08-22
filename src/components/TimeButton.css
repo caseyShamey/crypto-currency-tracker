@@ -1,0 +1,17 @@
+.time-button {
+  flex: 1;
+  min-width: 100px;
+  border-radius: 0px 0px 25px 25px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: none;
+  box-shadow: 3px 3px 5px black;
+}
+
+.time-button:hover {
+  background-color: #007bff;
+  border-color:  #007bff;
+  box-shadow: 3px 3px 5px black;
+  color: white;
+}

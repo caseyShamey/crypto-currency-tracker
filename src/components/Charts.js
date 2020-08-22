@@ -7,17 +7,19 @@ import './Charts.css'
 
 const Charts = ({ loading, setLoading, name, id, time }) => {
   const [data, setData] = useState([{timestamps: undefined, prices: undefined}])
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('Charting Data...')
 
+  // Fetch single currency values over time
   useEffect(() => {
-
     const fetchData = async () => {
       setLoading(true);
+
       // set start date
       let date = await moment().subtract(time[0], time[1])
       date = date.toISOString()
       let res = await axios.get(`https://api.nomics.com/v1/currencies/sparkline?key=4582ca2d8e989291b7cb5c9236018ace&ids=${id}&start=${date}`)
-      //check for data and reformat dates for display
+
+      //check if data exists and reformat dates for display
       if (res.data.length) {
         let convertedData = res.data[0].timestamps.map((el) => {
           let timeStamp = moment(el)
@@ -37,6 +39,7 @@ const Charts = ({ loading, setLoading, name, id, time }) => {
     fetchData();
   }, [id, name, setLoading, time]);
 
+  // Setup chart
   const chartData ={
       labels: data[0]['timestamps'],
       datasets: [
@@ -52,9 +55,6 @@ const Charts = ({ loading, setLoading, name, id, time }) => {
       ]
     }
 
-  if(loading) {
-    return <h2>Charting data...</h2>
-  }
   return (
     <div className="chart">
       <Line

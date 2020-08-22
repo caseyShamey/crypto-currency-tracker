@@ -16,6 +16,7 @@ const App = () => {
   const [currenciesPerPage] = useState(12);
   const [numberPaginated] = useState(5);
 
+// Fetch ticker data
   useEffect(() => {
     const fetchCurrencies = async () => {
       setLoading(true);
@@ -34,13 +35,13 @@ const App = () => {
   const detail = () => setView('detail');
   const viewCurrencies = () => setView('currencies');
 
-  //Detail Currency
+  // Detail Currency
   const selectCurrency = (id) => {
     detail()
     setSelectedCurrency(currencies[id])
   }
 
-  //Search
+  // Search logic
   const search = (searchTerm) => {
     let results = [];
     for (let el of currencies) {
