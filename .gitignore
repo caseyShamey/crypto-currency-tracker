@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 4582ca2d8e989291b7cb5c9236018ace
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

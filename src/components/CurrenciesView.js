@@ -26,7 +26,7 @@ const CurrenciesView = ({
   return (
     <div className='container mt-5'>
       <div className="heading-container">
-        <h1 onClick={() => window.location.reload(false)} className='text-primary mb-3 crypto-title'>Cryptocurrencies Tracker</h1>
+        <h1 onClick={() => window.location.reload(false)} className='text-primary mb-3 crypto-title'>Crypto Info Go</h1>
         <Search search={search} />
       </div>
         <Currencies
