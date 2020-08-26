@@ -1,22 +1,18 @@
 // const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const axios = require('axios');
 require('dotenv').config();
 // const { response } = require('express');
 
 // app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(cors());
 app.use(express.static("public"));
 
 // app.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 // });
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://master.d2bz4olnfu5w1l.amplifyapp.com");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/client/public/index.html");
