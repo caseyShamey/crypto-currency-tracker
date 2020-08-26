@@ -1,42 +1,30 @@
 {
-  "name": "crypto-currency-tracker",
-  "version": "0.1.0",
-  "private": true,
+  "name": "crypto-info-go",
+  "version": "1.0.0",
+  "description": "Cryptocurrency tracking and charting app",
+  "main": "index.js",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
-    "chart.js": "^2.9.3",
-    "elliptic": "^6.5.3",
-    "react": "^16.13.1",
-    "react-chartjs-2": "^2.10.0",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.3",
-    "serialize-javascript": "^4.0.0",
-    "timeago-react": "^3.0.0",
-    "websocket-extensions": "^0.1.4"
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "nodemon server/index.js",
+    "client": "cd client && npm run start-client",
+    "build:client": "cd client && npm run build",
+    "iall": "npm i && cd client && npm i",
+    "startboth": "npm start & npm run client"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caseyShamey/crypto-currency-tracker.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "Casey Shamey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caseyShamey/crypto-currency-tracker/issues"
   },
-  "proxy": "https://master.d2bz4olnfu5w1l.amplifyapp.com/"
+  "homepage": "https://github.com/caseyShamey/crypto-currency-tracker#readme"
 }

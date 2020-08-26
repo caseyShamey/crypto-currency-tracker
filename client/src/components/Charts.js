@@ -17,23 +17,25 @@ const Charts = ({ loading, setLoading, name, id, time }) => {
       // set start date
       let date = await moment().subtract(time[0], time[1])
       date = date.toISOString()
-      let res = await axios.get(`https://api.nomics.com/v1/currencies/sparkline?key=4582ca2d8e989291b7cb5c9236018ace&ids=${id}&start=${date}`)
-
-      //check if data exists and reformat dates for display
-      if (res.data.length) {
-        let convertedData = res.data[0].timestamps.map((el) => {
-          let timeStamp = moment(el)
-          let dateComponent = timeStamp.utc().format('MM-DD-YYYY')
-          let timeComponent = timeStamp.utc().format('HH:mm:ss')
-          return `${dateComponent} ${timeComponent}`
+      let res = await axios.get(`/detail?id=${id}&date=${date}`)
+        .then(res => {
+          //check if data exists and reformat dates for display
+          if (res.data.length) {
+            let convertedData = res.data[0].timestamps.map((el) => {
+              let timeStamp = moment(el)
+              let dateComponent = timeStamp.utc().format('MM-DD-YYYY')
+              let timeComponent = timeStamp.utc().format('HH:mm:ss')
+              return `${dateComponent} ${timeComponent}`
+            })
+            res.data[0].timestamps = convertedData
+            setData(res.data);
+            setTitle(`${name} Value Over Time`);
+          } else {
+            setData([{timestamps: undefined, prices: undefined}])
+            setTitle('No Data Provided')
+          }
         })
-        res.data[0].timestamps = convertedData
-        setData(res.data);
-        setTitle(`${name} Value Over Time`);
-      } else {
-        setData([{timestamps: undefined, prices: undefined}])
-        setTitle('No Data Provided')
-      }
+        .catch(err => console.log(err))
       setLoading(false);
     }
     fetchData();

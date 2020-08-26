@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     const fetchCurrencies = async () => {
       setLoading(true);
-      const res = await axios.get("https://api.nomics.com/v1/currencies/ticker?key=4582ca2d8e989291b7cb5c9236018ace")
+      const res = await axios.get("/prices")
         setCurrencies(res.data);
         setNumberOfCurrencies(res.data.length)
         setLoading(false);
