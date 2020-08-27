@@ -1,21 +1,23 @@
-// const path = require('path');
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
-const app = express();
+const app = express(),
+  bodyParser = require("body-parser");
 const axios = require('axios');
 require('dotenv').config();
-// const { response } = require('express');
 
-// app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(cors());
-app.use(express.static("public"));
+
 
 // app.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 // });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/client/public/index.html");
+  res.sendFile(__dirname + "../client/build/index.html");
 });
 
 app.get('/prices', (request, response) => {
